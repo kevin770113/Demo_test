@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>電源管理 IC 產品線市場與開發策略分析</title>
+    <style>
+        :root {
+            --primary-color: #003366;
+            --secondary-color: #0055A4;
+            --accent-color: #E24A00;
+            --bg-color: #F8F9FA;
+            --text-main: #333333;
+            --text-muted: #666666;
+            --border-color: #E0E0E0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', "Microsoft JhengHei", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: #FFFFFF;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--secondary-color);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .card h2 {
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .tag {
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: var(--accent-color);
+            margin-left: auto;
+            font-weight: bold;
+        }
+
+        .content-list {
+            list-style: none;
+        }
+
+        .content-list li {
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .content-list li::before {
+            content: "▪";
+            color: var(--secondary-color);
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 1.2rem;
+        }
+
+        .highlight {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.95rem;
+        }
+
+        .price-table th, .price-table td {
+            border: 1px solid var(--border-color);
+            padding: 8px;
+            text-align: left;
+        }
+
+        .price-table th {
+            background-color: var(--bg-color);
+            color: var(--text-muted);
+        }
+
+        footer {
+            margin-top: 60px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            .grid-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>電源管理 IC 市場概況與開發策略分析</h1>
+            <p>針對 Buck-Boost, Charger 及各類電源架構之市場競品與成本解析</p>
+        </header>
+
+        <div class="grid-layout">
+            
+            <!-- BUCK-BOOST Section -->
+            <div class="card">
+                <h2>BUCK-BOOST <span class="tag">升降壓架構</span></h2>
+                <ul class="content-list">
+                    <li><span class="highlight">成本優勢指標：</span>SC8723 具備極高性價比，取得成本低於 <strong>2 RMB</strong>。</li>
+                    <li><span class="highlight">電壓規格限制：</span>目前主流應用之電壓規格普遍落在 <strong>30V 以下</strong>。</li>
+                    <li><span class="highlight">雙向市場特性：</span>具備雙向 (Bidirectional) 充放電功能之產品市場定價較高，但整體應用受限，出貨量 (賣量) 較不具規模經濟。</li>
+                    <li><span class="highlight">協議功能整合：</span>一般而言，僅在整合「充電功能」的情境下，才需強制配備通訊協議。</li>
+                    <li><span class="highlight">多串應用門檻：</span>針對大功率充電需求，若電池串數設定為 <strong>3S (含)以上</strong>，則強烈建議甚至必須導入 <strong>PD (Power Delivery) 協議</strong>。</li>
+                </ul>
+            </div>
+
+            <!-- BOOST-CHARGER Section -->
+            <div class="card">
+                <h2>BOOST-CHARGER <span class="tag">升壓充電架構</span></h2>
+                <ul class="content-list">
+                    <li><span class="highlight">市場競爭態勢：</span>在 2S (兩串) 以下的應用屬高度殺價競爭之紅海市場，目前由<strong>英集芯 (Injoinic)</strong> 佔據絕對主流地位。</li>
+                </ul>
+                <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th>型號</th>
+                            <th>市場行情 / 備註</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>IP2342</strong></td>
+                            <td>約 0.25 RMB，具備極端價格優勢</td>
+                        </tr>
+                        <tr>
+                            <td><strong>CN3302</strong></td>
+                            <td>傳聞出貨量極大 (約 5kk / 月)，有待進一步實證</td>
+                        </tr>
+                        <tr>
+                            <td><strong>CS5090</strong></td>
+                            <td>具備一定市場能見度之常規競品</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- BUCK-CHARGER Section -->
+            <div class="card">
+                <h2>BUCK-CHARGER <span class="tag">降壓充電架構</span></h2>
+                <p style="margin-bottom: 10px; color: var(--text-muted);">針對不同瓦數與協議需求，市場有明確的分級定價：</p>
+                <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th>型號</th>
+                            <th>規格</th>
+                            <th>參考單價</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>IP2312</strong></td>
+                            <td>5V / 3A (基礎快充)</td>
+                            <td>~ 0.8 RMB</td>
+                        </tr>
+                        <tr>
+                            <td><strong>IP2317</strong></td>
+                            <td>12V / 5A (內建 PD 快充協議)</td>
+                            <td>~ 1.6 RMB</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- BOOST Section -->
+            <div class="card">
+                <h2>BOOST <span class="tag">升壓架構</span></h2>
+                <ul class="content-list">
+                    <li><span class="highlight">同步升壓需求強勁：</span>同步升壓 (Synchronous Boost) 轉換器在市場上依然保持高度需求。開發與選型可參考 <strong>ACM5618</strong> 及 <strong>ACM5620</strong> 兩款指標型號。</li>
+                    <li><span class="highlight">電壓規格升級趨勢：</span>終端應用對輸出電壓的要求正逐步拉高，傳統 12V 規格已開始不敷使用，未來應往更高電壓耐受度佈局。</li>
+                </ul>
+            </div>
+
+            <!-- BUCK Section -->
+            <div class="card">
+                <h2>BUCK <span class="tag">降壓架構</span></h2>
+                <ul class="content-list">
+                    <li><span class="highlight">基礎物料成本：</span>此領域已高度成熟，成本下探明顯。</li>
+                </ul>
+                <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th>型號</th>
+                            <th>市場行情 / 狀態</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>RT8336</strong></td>
+                            <td>約 0.36 RMB</td>
+                        </tr>
+                        <tr>
+                            <td><strong>IP6546</strong></td>
+                            <td>約 0.25 RMB</td>
+                        </tr>
+                        <tr>
+                            <td><strong>TI5430</strong></td>
+                            <td>老牌經典料號，市場端仍維持穩定出貨量</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+        <footer>
+            <p>內部機密資料 · 僅供研發與市場佈局決策參考</p>
+        </footer>
+    </div>
+
+</body>
+</html>
