@@ -3,282 +3,310 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>電源管理 IC 產品線市場與開發策略分析</title>
+    <title>大陸出差報告 Executive Dashboard</title>
     <style>
-        :root {
-            --primary-color: #003366;
-            --secondary-color: #0055A4;
-            --accent-color: #E24A00;
-            --bg-color: #F8F9FA;
-            --text-main: #333333;
-            --text-muted: #666666;
-            --border-color: #E0E0E0;
+        @page {
+            size: A4 landscape;
+            margin: 10mm;
         }
-
         * {
             box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', 'Helvetica Neue', 'Microsoft JhengHei', sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #f4f7f6;
+            color: #2c3e50;
+            font-size: 10.5pt;
+            line-height: 1.6;
         }
-
-        body {
-            font-family: 'Segoe UI', "Microsoft JhengHei", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
+        .dashboard {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+        /* Header Styling */
+        .header {
+            background: linear-gradient(135deg, #1a2a6c, #11998e);
+            color: #ffffff;
+            padding: 20px 24px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header-title {
+            margin: 0;
+            font-size: 18pt;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+        }
+        .header-meta {
+            font-size: 11pt;
+            color: #e0f2fe;
+            font-weight: 500;
+        }
+        
+        /* Flexbox Layout for Columns */
+        .row {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .col-6 {
+            flex: 1;
+            min-width: 0;
+        }
+        .col-12 {
+            flex: 100%;
+            min-width: 0;
+        }
+        
+        /* Card Styling */
+        .card {
+            background-color: #ffffff;
+            border: 1px solid #eef2f5;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02), 0 1px 3px rgba(0,0,0,0.05);
+            height: 100%;
+            transition: box-shadow 0.3s ease;
+        }
+        .card:hover {
+            box-shadow: 0 8px 15px rgba(0,0,0,0.05);
+        }
+        .card-header {
+            border-bottom: 1px solid #f1f5f9;
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+        }
+        .client-badge {
+            background-color: #1a365d;
+            color: white;
+            padding: 5px 14px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 11pt;
+            letter-spacing: 0.5px;
+        }
+        .client-badge.yaxin {
+            background-color: #0284c7;
+        }
+        .client-title {
+            margin-left: 12px;
+            font-weight: 600;
+            color: #64748b;
+            font-size: 10.5pt;
+        }
+        
+        /* Content Blocks */
+        .block-complaint {
+            background-color: #fffafb;
+            border-left: 4px solid #ef4444;
+            padding: 14px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 12px;
+        }
+        .block-action {
+            background-color: #f8fdfa;
+            border-left: 4px solid #10b981;
+            padding: 14px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 4px;
+        }
+        .block-neutral {
+            background-color: #f8fafc;
+            border-left: 4px solid #94a3b8;
+            padding: 14px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 16px;
+        }
+        .block-title {
+            font-weight: 700;
+            margin-bottom: 6px;
+            font-size: 10.5pt;
+        }
+        .block-complaint .block-title { color: #b91c1c; }
+        .block-action .block-title { color: #047857; }
+        .block-neutral .block-title { color: #475569; }
+        
+        .block-text {
+            margin: 0;
+            text-align: justify;
+            color: #334155;
             line-height: 1.6;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
+        /* Product Strategy Grid */
+        .section-divider {
+            font-weight: 700; 
+            font-size: 11.5pt; 
+            color: #1e293b; 
+            margin-top: 10px;
+            margin-bottom: 14px; 
+            border-bottom: 2px solid #e2e8f0; 
+            padding-bottom: 6px;
+            letter-spacing: 0.5px;
         }
-
-        header {
-            text-align: center;
-            margin-bottom: 50px;
-            padding-bottom: 20px;
-            border-bottom: 3px solid var(--primary-color);
-        }
-
-        header h1 {
-            color: var(--primary-color);
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-
-        header p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-        }
-
-        .grid-layout {
+        
+        /* Grid system layout */
+        .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            align-items: stretch;
         }
-
-        .card {
-            background: #FFFFFF;
-            border-radius: 10px;
-            padding: 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border-top: 4px solid var(--secondary-color);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-        }
-
-        .card h2 {
-            color: var(--primary-color);
-            font-size: 1.4rem;
-            margin-bottom: 15px;
+        .product-item {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 16px;
+            height: 100%;
             display: flex;
-            align-items: center;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 10px;
+            flex-direction: column;
+            transition: border-color 0.2s ease;
         }
-
-        .tag {
-            background-color: var(--bg-color);
-            border: 1px solid var(--border-color);
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            color: var(--accent-color);
-            margin-left: auto;
+        .product-item:hover {
+            border-color: #cbd5e1;
+        }
+        .product-number {
+            background-color: #334155;
+            color: white;
             font-weight: bold;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 9pt;
+            display: inline-block;
+            align-self: flex-start;
+            margin-bottom: 8px;
         }
-
-        .content-list {
-            list-style: none;
+        .product-text {
+            margin: 0;
+            font-size: 10pt;
+            text-align: justify;
+            color: #334155;
         }
-
-        .content-list li {
-            margin-bottom: 12px;
-            padding-left: 20px;
-            position: relative;
-        }
-
-        .content-list li::before {
-            content: "▪";
-            color: var(--secondary-color);
-            position: absolute;
-            left: 0;
-            top: 0;
-            font-size: 1.2rem;
-        }
-
-        .highlight {
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-
-        .price-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-            font-size: 0.95rem;
-        }
-
-        .price-table th, .price-table td {
-            border: 1px solid var(--border-color);
-            padding: 8px;
-            text-align: left;
-        }
-
-        .price-table th {
-            background-color: var(--bg-color);
-            color: var(--text-muted);
-        }
-
-        footer {
-            margin-top: 60px;
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            border-top: 1px solid var(--border-color);
-            padding-top: 20px;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2rem;
+        
+        @media (max-width: 900px) {
+            .row {
+                flex-direction: column;
             }
-            .grid-layout {
+            .product-grid {
                 grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-
-    <div class="container">
-        <header>
-            <h1>電源管理 IC 市場概況與開發策略分析</h1>
-            <p>針對 Buck-Boost, Charger 及各類電源架構之市場競品與成本解析</p>
-        </header>
-
-        <div class="grid-layout">
-            
-            <!-- BUCK-BOOST Section -->
-            <div class="card">
-                <h2>BUCK-BOOST <span class="tag">升降壓架構</span></h2>
-                <ul class="content-list">
-                    <li><span class="highlight">成本優勢指標：</span>SC8723 具備極高性價比，取得成本低於 <strong>2 RMB</strong>。</li>
-                    <li><span class="highlight">電壓規格限制：</span>目前主流應用之電壓規格普遍落在 <strong>30V 以下</strong>。</li>
-                    <li><span class="highlight">雙向市場特性：</span>具備雙向 (Bidirectional) 充放電功能之產品市場定價較高，但整體應用受限，出貨量 (賣量) 較不具規模經濟。</li>
-                    <li><span class="highlight">協議功能整合：</span>一般而言，僅在整合「充電功能」的情境下，才需強制配備通訊協議。</li>
-                    <li><span class="highlight">多串應用門檻：</span>針對大功率充電需求，若電池串數設定為 <strong>3S (含)以上</strong>，則強烈建議甚至必須導入 <strong>PD (Power Delivery) 協議</strong>。</li>
-                </ul>
-            </div>
-
-            <!-- BOOST-CHARGER Section -->
-            <div class="card">
-                <h2>BOOST-CHARGER <span class="tag">升壓充電架構</span></h2>
-                <ul class="content-list">
-                    <li><span class="highlight">市場競爭態勢：</span>在 2S (兩串) 以下的應用屬高度殺價競爭之紅海市場，目前由<strong>英集芯 (Injoinic)</strong> 佔據絕對主流地位。</li>
-                </ul>
-                <table class="price-table">
-                    <thead>
-                        <tr>
-                            <th>型號</th>
-                            <th>市場行情 / 備註</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>IP2342</strong></td>
-                            <td>約 0.25 RMB，具備極端價格優勢</td>
-                        </tr>
-                        <tr>
-                            <td><strong>CN3302</strong></td>
-                            <td>傳聞出貨量極大 (約 5kk / 月)，有待進一步實證</td>
-                        </tr>
-                        <tr>
-                            <td><strong>CS5090</strong></td>
-                            <td>具備一定市場能見度之常規競品</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- BUCK-CHARGER Section -->
-            <div class="card">
-                <h2>BUCK-CHARGER <span class="tag">降壓充電架構</span></h2>
-                <p style="margin-bottom: 10px; color: var(--text-muted);">針對不同瓦數與協議需求，市場有明確的分級定價：</p>
-                <table class="price-table">
-                    <thead>
-                        <tr>
-                            <th>型號</th>
-                            <th>規格</th>
-                            <th>參考單價</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>IP2312</strong></td>
-                            <td>5V / 3A (基礎快充)</td>
-                            <td>~ 0.8 RMB</td>
-                        </tr>
-                        <tr>
-                            <td><strong>IP2317</strong></td>
-                            <td>12V / 5A (內建 PD 快充協議)</td>
-                            <td>~ 1.6 RMB</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- BOOST Section -->
-            <div class="card">
-                <h2>BOOST <span class="tag">升壓架構</span></h2>
-                <ul class="content-list">
-                    <li><span class="highlight">同步升壓需求強勁：</span>同步升壓 (Synchronous Boost) 轉換器在市場上依然保持高度需求。開發與選型可參考 <strong>ACM5618</strong> 及 <strong>ACM5620</strong> 兩款指標型號。</li>
-                    <li><span class="highlight">電壓規格升級趨勢：</span>終端應用對輸出電壓的要求正逐步拉高，傳統 12V 規格已開始不敷使用，未來應往更高電壓耐受度佈局。</li>
-                </ul>
-            </div>
-
-            <!-- BUCK Section -->
-            <div class="card">
-                <h2>BUCK <span class="tag">降壓架構</span></h2>
-                <ul class="content-list">
-                    <li><span class="highlight">基礎物料成本：</span>此領域已高度成熟，成本下探明顯。</li>
-                </ul>
-                <table class="price-table">
-                    <thead>
-                        <tr>
-                            <th>型號</th>
-                            <th>市場行情 / 狀態</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>RY8336</strong></td>
-                            <td>約 0.36 RMB</td>
-                        </tr>
-                        <tr>
-                            <td><strong>IP6546</strong></td>
-                            <td>約 0.25 RMB</td>
-                        </tr>
-                        <tr>
-                            <td><strong>TI5430</strong></td>
-                            <td>老牌經典料號，市場端仍維持穩定出貨量</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
+    <div class="dashboard">
+        <div class="header">
+            <div class="header-title">大陸出差報告</div>
+            <div class="header-meta">出差日期：2026/06/22 ~ 06/24</div>
         </div>
 
-        <footer>
-            <p>內部機密資料 · 僅供研發與市場佈局決策參考</p>
-        </footer>
-    </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <span class="client-badge">伊戈爾</span>
+                        <span class="client-title">訪問對象：副總 / 維修工程師 (06/23)</span>
+                    </div>
+                    <div class="block-complaint">
+                        <div class="block-title">※客訴問題</div>
+                        <p class="block-text">FTC2107/FP7122一直有比例性不良問題，目前有維修部門堆積大量有問題的板子處理不完，而且終端客戶也一直要求索賠，目前終端客戶（OSRAM）要求相關說明文件與品質保證書，另外類比科發佈停產後也沒有提供足夠的貨供客戶做換機作業。</p>
+                    </div>
+                    <div class="block-action">
+                        <div class="block-title">※處理方式</div>
+                        <p class="block-text">協助客戶處理終端客戶要求所提出的相關說明文件，交貨相關問題請雅欣溝通協調處理，賠償事宜伊戈爾表示願意再跟終端客戶協商處理掉。</p>
+                    </div>
+                </div>
+            </div>
 
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <span class="client-badge">科谷</span>
+                        <span class="client-title">訪問對象：總經理 / 採購 / RD / 生產 (06/23)</span>
+                    </div>
+                    <div class="block-complaint">
+                        <div class="block-title">※客訴問題</div>
+                        <p class="block-text">FTC2107/FP7122比例性不良問題，目前終端客戶有15家提出索賠書，生產完的機種已經按客訴報告的建議先老化後出貨，客戶提出類比科對於出問題產品已經超過一年卻無任何對策相當不滿，而且甚至沒有任何替代產品，出問題後甚至又發佈停產，停產後甚至交不出貨供換機作業，指出類比科相當不負責任，之後相關產品難以再度採用生產。</p>
+                    </div>
+                    <div class="block-action">
+                        <div class="block-title">※處理方式</div>
+                        <p class="block-text">科谷已盡快在做換機作業，終端未交貨與提賠償相關問題，科谷願意先用業務手法擋掉部分，其餘再與雅欣協調分攤共同處理。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <span class="client-badge yaxin">雅欣</span>
+                        <span class="client-title">訪問對象：張總 / 李工 (06/23) &mdash; 討論客訴問題與產品規劃方向</span>
+                    </div>
+                    
+                    <div>
+                        <div class="block-neutral">
+                            <div class="block-title">※客訴問題</div>
+                            <p class="block-text">其索賠相關議題雅欣會盡量先吸收掉，如有處理不掉的項目才會考慮跟類比科洽談。</p>
+                        </div>
+                        <div class="section-divider">※產品規劃</div>
+                    </div>
+
+                    <div class="product-grid">
+                        <div class="product-item">
+                            <span class="product-number">01</span>
+                            <p class="product-text">雅欣建議FP5207轉TSMC製程生產， 功能與市場狀況較為穩定比較有信心。</p>
+                        </div>
+                        <div class="product-item">
+                            <span class="product-number">02</span>
+                            <p class="product-text">FP6295市場驗證較少，且明確無法提供OC數值上下限相關問題，客戶仍採觀望態度不敢大量生產使用。</p>
+                        </div>
+                        <div class="product-item">
+                            <span class="product-number">03</span>
+                            <p class="product-text">FP6296仍持續有燒HVDD相關客訴，目前應用領域大多負載為電機馬達，尤其理髮機有較多反電動勢，這種應用容易造成輸出有突波電壓，不良客訴就會比較多，雅欣表示耐壓餘量不足的關係，所以在這方面領域產品難以展開。</p>
+                        </div>
+                        <div class="product-item">
+                            <span class="product-number">04</span>
+                            <p class="product-text">FTC2107系列產品，如果轉TSMC則應把這次客訴CS功能失效問題找出來解決，否則等批量生產仍是個隱憂，還有關於IDD limit整批次偏低問題也要解決。不過轉TSMC後仍會定義為基礎型產品，對於新市場不一定能接上，價格成本會比較敏感。</p>
+                        </div>
+                        <div class="product-item">
+                            <span class="product-number">05</span>
+                            <p class="product-text">新產品對於同步升壓TPS61088(12.6V)/TPS61178(20V)市場需求比較明確，也是目前升壓產品一直有欠缺的部分。</p>
+                        </div>
+                        <div class="product-item">
+                            <span class="product-number">06</span>
+                            <p class="product-text">雅欣表示希望FP7195能有後繼產品接上，目前市場對於這類型產品需求仍在，相關調光功能大陸競爭對手也陸續推出同類型產品，可參考智芯(Hichips)的HI7000(降壓)與HI6000A(升壓)，調光效果跟FP7195差不多條件下售價成本低很多，逐漸成為市場主流規格。</p>
+                        </div>
+                        <div class="product-item">
+                            <span class="product-number">07</span>
+                            <p class="product-text">FP7135近期客戶正在畫板驗證，不過功能性受限關係，市場定位仍是取代FP7125為主，目前產品仍無法滿足客戶新機種的功能性要求，在2025/1月已正式提案 pin to pin OB3379的案子(目前是FTCM9036106)希望可以盡快投入獨立量產階段，否則不管是競爭對手因素或市場需求變遷，LED相關市場會逐漸錯失份額甚至退出市場。</p>
+                        </div>
+                        <div class="product-item">
+                            <span class="product-number">08</span>
+                            <p class="product-text">FP7102/FP7103停產的關係，在完全退出客戶市場前希望能有產品規劃接上，雅欣預估目前這市場還有擴張的可能性，完全沒有產品去維持推廣很可惜。目前已規劃的36V 3A Sync-Buck LED Driver可以完全替代，建議要有相關時間表出來，給代理商可以去維持市場關係。</p>
+                        </div>
+                        <div class="product-item">
+                            <span class="product-number">09</span>
+                            <p class="product-text">FP7208目前主流應用在輸出多路調光調色產品，受限於調光百分比不夠低，仍有不少客戶機種無法採用，因此提出後續產品希望能有相關規劃。</p>
+                        </div>
+                        <div class="product-item">
+                            <span class="product-number">10</span>
+                            <p class="product-text">PD相關產品雅欣客戶目前接觸較少，尚無法提供明確的產品規劃方面的建議。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
