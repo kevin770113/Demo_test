@@ -1,312 +1,1018 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>大陸出差報告 Executive Dashboard</title>
-    <style>
-        @page {
-            size: A4 landscape;
-            margin: 10mm;
-        }
-        * {
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Segoe UI', 'Helvetica Neue', 'Microsoft JhengHei', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f7f6;
-            color: #2c3e50;
-            font-size: 10.5pt;
-            line-height: 1.6;
-        }
-        .dashboard {
-            width: 100%;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 15px;
-        }
-        /* Header Styling */
-        .header {
-            background: linear-gradient(135deg, #1a2a6c, #11998e);
-            color: #ffffff;
-            padding: 20px 24px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .header-title {
-            margin: 0;
-            font-size: 18pt;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-        }
-        .header-meta {
-            font-size: 11pt;
-            color: #e0f2fe;
-            font-weight: 500;
-        }
-        
-        /* Flexbox Layout for Columns */
-        .row {
-            display: flex;
-            gap: 16px;
-            margin-bottom: 16px;
-        }
-        .col-6 {
-            flex: 1;
-            min-width: 0;
-        }
-        .col-12 {
-            flex: 100%;
-            min-width: 0;
-        }
-        
-        /* Card Styling */
-        .card {
-            background-color: #ffffff;
-            border: 1px solid #eef2f5;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02), 0 1px 3px rgba(0,0,0,0.05);
-            height: 100%;
-            transition: box-shadow 0.3s ease;
-        }
-        .card:hover {
-            box-shadow: 0 8px 15px rgba(0,0,0,0.05);
-        }
-        .card-header {
-            border-bottom: 1px solid #f1f5f9;
-            padding-bottom: 12px;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-        }
-        .client-badge {
-            background-color: #1a365d;
-            color: white;
-            padding: 5px 14px;
-            border-radius: 6px;
-            font-weight: 700;
-            font-size: 11pt;
-            letter-spacing: 0.5px;
-        }
-        .client-badge.yaxin {
-            background-color: #0284c7;
-        }
-        .client-title {
-            margin-left: 12px;
-            font-weight: 600;
-            color: #64748b;
-            font-size: 10.5pt;
-        }
-        
-        /* Content Blocks */
-        .block-complaint {
-            background-color: #fffafb;
-            border-left: 4px solid #ef4444;
-            padding: 14px;
-            border-radius: 0 8px 8px 0;
-            margin-bottom: 12px;
-        }
-        .block-action {
-            background-color: #f8fdfa;
-            border-left: 4px solid #10b981;
-            padding: 14px;
-            border-radius: 0 8px 8px 0;
-            margin-bottom: 4px;
-        }
-        .block-neutral {
-            background-color: #f8fafc;
-            border-left: 4px solid #94a3b8;
-            padding: 14px;
-            border-radius: 0 8px 8px 0;
-            margin-bottom: 16px;
-        }
-        .block-title {
-            font-weight: 700;
-            margin-bottom: 6px;
-            font-size: 10.5pt;
-        }
-        .block-complaint .block-title { color: #b91c1c; }
-        .block-action .block-title { color: #047857; }
-        .block-neutral .block-title { color: #475569; }
-        
-        .block-text {
-            margin: 0;
-            text-align: justify;
-            color: #334155;
-            line-height: 1.6;
-        }
-
-        /* Product Strategy Grid */
-        .section-divider {
-            font-weight: 700; 
-            font-size: 11.5pt; 
-            color: #1e293b; 
-            margin-top: 10px;
-            margin-bottom: 14px; 
-            border-bottom: 2px solid #e2e8f0; 
-            padding-bottom: 6px;
-            letter-spacing: 0.5px;
-        }
-        
-        /* Grid system layout */
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-            align-items: stretch;
-        }
-        .product-item {
-            background-color: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            padding: 16px;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            transition: border-color 0.2s ease;
-        }
-        .product-item:hover {
-            border-color: #cbd5e1;
-        }
-        .product-number {
-            background-color: #334155;
-            color: white;
-            font-weight: bold;
-            padding: 3px 10px;
-            border-radius: 12px;
-            font-size: 9pt;
-            display: inline-block;
-            align-self: flex-start;
-            margin-bottom: 8px;
-        }
-        .product-text {
-            margin: 0;
-            font-size: 10pt;
-            text-align: justify;
-            color: #334155;
-        }
-        
-        @media (max-width: 900px) {
-            .row {
-                flex-direction: column;
-            }
-            .product-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <title>AE/EE 專案展示與硬體工具平台</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Lucide Icons for premium feel -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Chart.js for premium visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
-    <div class="dashboard">
-        <div class="header">
-            <div class="header-title">大陸出差報告</div>
-            <div class="header-meta">出差日期：2026/06/22 ~ 06/24</div>
-        </div>
+<body data-theme="dark">
 
-        <div class="row">
-            <div class="col-6">
-                <div class="card">
-                    <div class="card-header">
-                        <span class="client-badge">伊戈爾</span>
-                        <span class="client-title">訪問對象：副總 / 維修工程師 (06/23)</span>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">
+                <i data-lucide="cpu"></i>
+            </div>
+            <h1 class="brand-name">AE/EE PORTFOLIO</h1>
+        </div>
+        
+        <nav class="nav-menu">
+            <div class="nav-category">主面板</div>
+            <a class="nav-item active" data-tab="dashboard">
+                <i data-lucide="layout-dashboard"></i>
+                <span>總體儀表板</span>
+            </a>
+
+            <div class="nav-category">晶片參數計算</div>
+            <a class="nav-item" data-tab="pmic-calc">
+                <i data-lucide="zap"></i>
+                <span>PMIC 參數試算區</span>
+            </a>
+
+            <div class="nav-category">硬體工具箱</div>
+            <a class="nav-item" data-tab="ee-toolbox">
+                <i data-lucide="binary"></i>
+                <span>通用設計工具箱</span>
+            </a>
+
+            <div class="nav-category">自動化與量測</div>
+            <a class="nav-item" data-tab="automation">
+                <i data-lucide="sliders"></i>
+                <span>數據與自動化中心</span>
+            </a>
+
+            <div class="nav-category">產品與庫存</div>
+            <a class="nav-item" data-tab="catalog-db">
+                <i data-lucide="database"></i>
+                <span>選型庫與樣品管理</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="theme-toggle" id="themeBtn">
+                <i data-lucide="sun"></i>
+            </button>
+            <div class="user-badge" style="font-size: 12px; color: var(--text-secondary);">
+                <span>VBA / VB6 專案整合</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-wrapper">
+        
+        <!-- Header Bar -->
+        <header class="header-bar">
+            <div class="header-title">
+                <h1 id="pageTitle">總體儀表板</h1>
+                <p id="pageSubtitle">硬體研發、電路試算與量測自動化成果展示</p>
+            </div>
+        </header>
+
+        <!-- PAGE 1: DASHBOARD -->
+        <section id="dashboard" class="page-section active">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon"><i data-lucide="folder-git-2"></i></div>
+                    <div class="stat-info">
+                        <h3>專案路徑總數</h3>
+                        <p>75 個</p>
                     </div>
-                    <div class="block-complaint">
-                        <div class="block-title">※客訴問題</div>
-                        <p class="block-text">FTC2107/FP7122一直有比例性不良問題，目前有維修部門堆積大量有問題的板子處理不完，而且終端客戶也一直要求索賠，目前終端客戶（OSRAM）要求相關說明文件與品質保證書，另外類比科發佈停產後也沒有提供足夠的貨供客戶做換機作業。</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i data-lucide="chip"></i></div>
+                    <div class="stat-info">
+                        <h3>支援晶片型號</h3>
+                        <p>15+ 款</p>
                     </div>
-                    <div class="block-action">
-                        <div class="block-title">※處理方式</div>
-                        <p class="block-text">協助客戶處理終端客戶要求所提出的相關說明文件，交貨相關問題請雅欣溝通協調處理，賠償事宜伊戈爾表示願意再跟終端客戶協商處理掉。</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i data-lucide="code-2"></i></div>
+                    <div class="stat-info">
+                        <h3>自動化工具</h3>
+                        <p>8 套</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i data-lucide="check-square"></i></div>
+                    <div class="stat-info">
+                        <h3>Demo Board 數量</h3>
+                        <p>在庫列管</p>
                     </div>
                 </div>
             </div>
 
-            <div class="col-6">
+            <div class="content-grid">
+                <!-- Summary Card -->
                 <div class="card">
                     <div class="card-header">
-                        <span class="client-badge">科谷</span>
-                        <span class="client-title">訪問對象：總經理 / 採購 / RD / 生產 (06/23)</span>
+                        <h2>👋 歡迎來到 AE/EE 專案成果展示平台</h2>
                     </div>
-                    <div class="block-complaint">
-                        <div class="block-title">※客訴問題</div>
-                        <p class="block-text">FTC2107/FP7122比例性不良問題，目前終端客戶有15家提出索賠書，生產完的機種已經按客訴報告的建議先老化後出貨，客戶提出類比科對於出問題產品已經超過一年卻無任何對策相當不滿，而且甚至沒有任何替代產品，出問題後甚至又發佈停產，停產後甚至交不出貨供換機作業，指出類比科相當不負責任，之後相關產品難以再度採用生產。</p>
+                    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 16px;">
+                        本軟體 App 整合了您在晶片設計與應用工程中開發的各類工具。我們將原來的 VB6 獨立軟體及 Excel VBA 巨集的數學建模邏輯、自動化分析流程，重新以 HTML5、Vanilla CSS 以及 JavaScript 移植為網頁版互動式 Demo，充分展示您在<strong>硬體工程、數學建模與軟體自動化</strong>上的核心能力。
+                    </p>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">
+                        請點擊左側導覽列，切換不同的展示模組：
+                    </p>
+                    <ul style="color: var(--text-secondary); margin: 16px 0 0 24px; line-height: 1.8;">
+                        <li><strong>PMIC 參數試算區</strong>：包含 FP7126 調光曲線繪圖模擬與各類 DC-DC 元件計算。</li>
+                        <li><strong>通用設計工具箱</strong>：包含精密分壓阻值選擇、電感線圈匝數、MOSFET 功率損耗分析。</li>
+                        <li><strong>數據與自動化中心</strong>：虛擬演示 AE Link 資料整合流程，並可上傳 CP 數據進行良率直方圖分析。</li>
+                        <li><strong>選型庫與樣品管理</strong>：FTC-FP 代號模糊查詢、全系列卡片式規格目錄、以及實驗室樣品看板。</li>
+                    </ul>
+                </div>
+
+                <!-- Skill Highlights Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>🚀 核心亮點展示</h2>
                     </div>
-                    <div class="block-action">
-                        <div class="block-title">※處理方式</div>
-                        <p class="block-text">科谷已盡快在做換機作業，終端未交貨與提賠償相關問題，科谷願意先用業務手法擋掉部分，其餘再與雅欣協調分攤共同處理。</p>
+                    <div style="display: flex; flex-direction: column; gap: 16px;">
+                        <div style="display: flex; gap: 12px; align-items: flex-start;">
+                            <div style="color: var(--accent-primary);"><i data-lucide="bar-chart-3"></i></div>
+                            <div>
+                                <h4 style="font-size: 14px; font-weight:600;">Chart.js 圖形化展示</h4>
+                                <p style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">模擬原 VB6 圖形繪製，動態產生調光網格曲線與 CP良率分佈曲線。</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 12px; align-items: flex-start;">
+                            <div style="color: var(--success);"><i data-lucide="table"></i></div>
+                            <div>
+                                <h4 style="font-size: 14px; font-weight:600;">E24/E96 並聯阻值推薦</h4>
+                                <p style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">前端內建標準標稱電阻表，直接匹配現實世界的可用電阻組合。</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 12px; align-items: flex-start;">
+                            <div style="color: var(--warning);"><i data-lucide="search"></i></div>
+                            <div>
+                                <h4 style="font-size: 14px; font-weight:600;">模糊匹配資料庫</h4>
+                                <p style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">利用內部專案檔資料庫，實現毫秒級雙向 FTC ↔ FP 規格配對。</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="row">
-            <div class="col-12">
+        <!-- PAGE 2: PMIC CALCULATORS -->
+        <section id="pmic-calc" class="page-section">
+            <div style="display: flex; flex-direction: column; gap: 24px; width: 100%;">
+                <!-- Card 1: ⚡ 晶片設計與周邊試算面板 (Form1 核心) -->
+                <div class="card" style="width: 100%;">
+                    <div class="card-header" style="border-bottom: 1px solid var(--border-card); padding-bottom: 16px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+                        <h2 style="margin: 0; font-size: 18px; display: flex; align-items: center; gap: 8px;"><i data-lucide="cpu" style="color: var(--accent-primary);"></i> ⚡ 晶片設計與周邊試算面板</h2>
+                        <select id="chipSelector" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-card); color: var(--text-primary); border-radius: 8px; padding: 6px 12px; outline: none; font-weight: 500; font-size: 13px;">
+                            <option value="fp7126">FP7126/FP7127/FP7128 調光試算</option>
+                            <option value="fp7125">FP7125/FP7122/FP7123 LED 驅動</option>
+                            <option value="fp5207">FP5207/FP5217/FP7209 DC-DC 轉換器</option>
+                            <option value="fp7195">FP7195 LED 驅動 (ESR 紋波分析)</option>
+                            <option value="fp7130">FP7130 Buck LED 恆流轉換器</option>
+                        </select>
+                    </div>
+
+                    <!-- FP7126 Form -->
+                    <div id="form-fp7126" class="chip-form">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                            <!-- Left: Inputs Area -->
+                            <div class="section-input">
+                                <div class="results-title" style="margin-bottom: 16px; font-size: 14px; text-transform: none; letter-spacing: normal; color: var(--accent-primary); border-bottom: 1px solid var(--border-input-section); padding-bottom: 8px; display: flex; align-items: center; gap: 6px;"><i data-lucide="sliders" style="width:16px;"></i> 輸入參數區 (Inputs)</div>
+                                <div class="form-grid" style="grid-template-columns: 1fr 1fr; gap: 16px;">
+                                    <div class="input-group">
+                                        <label>最大輸入 Vin_max (V)</label>
+                                        <input type="number" id="v126_vin_max" value="48" step="0.1">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>最小輸入 Vin_min (V)</label>
+                                        <input type="number" id="v126_vin_min" value="36" step="0.1">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>LED 電壓 Vled (V)</label>
+                                        <input type="number" id="v126_vled_form1" value="32" step="0.1">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>輸出電流 Iled (A)</label>
+                                        <input type="number" id="v126_iled_form1" value="1.2" step="0.1">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>試算基準 (Combo1)</label>
+                                        <select id="v126_mode_form1" onchange="toggleForm1Mode()" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; padding: 10px; color: var(--text-primary); font-size: 13px; width: 100%;">
+                                            <option value="freq">頻率 (Frequency)</option>
+                                            <option value="ind">電感 (Inductance)</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-group">
+                                        <label id="v126_target_label">設定頻率值 (kHz)</label>
+                                        <input type="number" id="v126_target_val" value="375" step="1">
+                                    </div>
+                                </div>
+
+                                <!-- MOSFET Selection -->
+                                <div class="mosfet-selection-box" style="margin-top: 16px; padding: 16px; background: rgba(255,255,255,0.02); border-radius: 8px; border: 1px solid var(--border-input-section);">
+                                    <div style="font-size: 13px; font-weight: 600; margin-bottom: 12px; color: var(--text-primary);">MOSFET 規格選擇</div>
+                                    <div style="display: flex; gap: 12px; margin-bottom: 12px; font-size: 12px; color: var(--text-secondary); flex-wrap: wrap;">
+                                        <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+                                            <input type="radio" name="v126_mos_sel" value="1" checked onchange="toggleMosfetInputs()"> 預設 (0.12Ω, 24nC)
+                                        </label>
+                                        <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+                                            <input type="radio" name="v126_mos_sel" value="2" onchange="toggleMosfetInputs()"> 自訂規格
+                                        </label>
+                                        <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+                                            <input type="radio" name="v126_mos_sel" value="3" onchange="toggleMosfetInputs()"> 內建 (0.3Ω, 12nC)
+                                        </label>
+                                    </div>
+                                    <div id="v126_custom_mos_grid" class="form-grid" style="display: none; grid-template-columns: repeat(3, 1fr); gap: 12px;">
+                                        <div class="input-group">
+                                            <label>Ron (Ω)</label>
+                                            <input type="number" id="v126_mos_ron" value="0.12" step="0.01">
+                                        </div>
+                                        <div class="input-group">
+                                            <label>Qg (nC)</label>
+                                            <input type="number" id="v126_mos_qg" value="24" step="1">
+                                        </div>
+                                        <div class="input-group">
+                                            <label>Vgs (V)</label>
+                                            <input type="number" id="v126_mos_vgs" value="10" step="0.5">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="fp7126_form1_warning" style="margin-top: 12px; padding: 10px; border-radius: 6px; font-size: 13px; font-weight: 500; display: none;"></div>
+
+                                <div style="display: flex; gap: 12px; margin-top: 16px;">
+                                    <button class="btn-primary" onclick="runForm1Calculation()" style="flex: 1;"><i data-lucide="calculator"></i> 試算電感值</button>
+                                    <button class="btn-secondary" onclick="loadForm1ToGref()" style="flex: 1;"><i data-lucide="arrow-down-to-line"></i> 載入至模擬器</button>
+                                </div>
+                            </div>
+
+                            <!-- Right: Outputs Area -->
+                            <div class="section-output">
+                                <div class="results-title" style="margin-bottom: 16px; font-size: 14px; text-transform: none; letter-spacing: normal; color: var(--warning); border-bottom: 1px solid var(--border-output-section); padding-bottom: 8px; display: flex; align-items: center; gap: 6px;"><i data-lucide="check-square" style="width:16px;"></i> 設計結果區 (Outputs)</div>
+                                <div class="results-grid" style="grid-template-columns: 1fr 1fr; gap: 12px;">
+                                    <div class="result-item" style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 6px;">
+                                        <span class="result-label" id="r126_form1_result_lbl">最佳建議電感 L (μH)</span>
+                                        <span class="result-val" id="r126_form1_result_val" style="font-size: 16px; color: var(--warning); font-weight: 700;">-</span>
+                                    </div>
+                                    <div class="result-item" style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 6px;">
+                                        <span class="result-label">Duty 占空比範圍</span>
+                                        <span class="result-val" id="r126_form1_duty" style="font-size: 16px;">-</span>
+                                    </div>
+                                    <div class="result-item" style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 6px;">
+                                        <span class="result-label">計算 Ton 時間</span>
+                                        <span class="result-val" id="r126_form1_ton" style="font-size: 16px;">-</span>
+                                    </div>
+                                    <div class="result-item" style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 6px;">
+                                        <span class="result-label">計算 Toff 時間</span>
+                                        <span class="result-val" id="r126_form1_toff" style="font-size: 16px;">-</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Detailed Output Components List -->
+                                <div style="margin-top: 20px; padding-top: 16px; border-top: 1px dashed var(--border-output-section); font-size: 13px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; color: var(--text-secondary);">
+                                    <div><strong>Rcs 阻值:</strong> <span id="lbl_rcs" style="color: var(--text-primary); font-weight:500;">-</span></div>
+                                    <div><strong>Rcs 功耗:</strong> <span id="lbl_p_rcs" style="color: var(--text-primary); font-weight:500;">-</span></div>
+                                    <div><strong>啟動電阻 Rin:</strong> <span id="lbl_rin" style="color: var(--text-primary); font-weight:500;">-</span></div>
+                                    <div><strong>Rin 功耗:</strong> <span id="lbl_p_rin" style="color: var(--text-primary); font-weight:500;">-</span></div>
+                                    <div><strong>MOSFET 耐壓/電流:</strong> <span id="lbl_mos_rating" style="color: var(--text-primary); font-weight:500;">-</span></div>
+                                    <div><strong>二極體 耐壓/電流:</strong> <span id="lbl_diode_rating" style="color: var(--text-primary); font-weight:500;">-</span></div>
+                                    <div><strong>電感峰值電流 Peak:</strong> <span id="lbl_l_peak" style="color: var(--text-primary); font-weight:500;">-</span></div>
+                                    <div><strong>VCC 旁路電容:</strong> <span style="color: var(--text-primary); font-weight:500;">22 μF (固定)</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FP7125 Form -->
+                    <div id="form-fp7125" class="chip-form" style="display:none;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                            <!-- Left: Inputs Area -->
+                            <div class="section-input">
+                                <div class="results-title" style="margin-bottom: 16px; font-size: 14px; text-transform: none; letter-spacing: normal; color: var(--accent-primary); border-bottom: 1px solid var(--border-input-section); padding-bottom: 8px; display: flex; align-items: center; gap: 6px;"><i data-lucide="sliders" style="width:16px;"></i> 輸入參數區 (Inputs)</div>
+                                
+                                <!-- Sub-Section: Optimization Mode -->
+                                <div style="margin-bottom: 16px; padding: 12px; background: rgba(255,255,255,0.02); border-radius: 8px; border: 1px solid var(--border-input-section);">
+                                    <div class="input-group">
+                                        <label>工作優化模式 (Option3/4)</label>
+                                        <select id="v125_opt_mode" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; padding: 8px; color: var(--text-primary); font-size: 13px; width: 100%;">
+                                            <option value="dim">調光優化 (Dimming Opt)</option>
+                                            <option value="load">負載與輸入調整率優化</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Sub-Section: Core Calculation Parameters -->
+                                <div style="font-size: 12px; font-weight: 600; margin-bottom: 8px; color: var(--text-primary);">核心試算工作點 (Core Workpoint)</div>
+                                <div class="form-grid" style="grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; padding: 12px; background: rgba(255,255,255,0.02); border-radius: 8px; border: 1px solid var(--border-input-section);">
+                                    <div class="input-group">
+                                        <label>工作輸入 Vin (V)</label>
+                                        <input type="number" id="v125_vin" value="48" step="0.1">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>工作 LED 電壓 Vled (V)</label>
+                                        <input type="number" id="v125_vled" value="36" step="0.1">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>LED 電流 Iled (A)</label>
+                                        <input type="number" id="v125_iled" value="1.0" step="0.1">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>電感 Ripple 漣波比 (%)</label>
+                                        <input type="number" id="v125_ripple" value="50" step="1">
+                                    </div>
+                                    <div class="input-group" style="grid-column: span 2;">
+                                        <label>調光頻率 Freq_dim (kHz)</label>
+                                        <input type="number" id="v125_freq_dim" value="1.0" step="0.1">
+                                    </div>
+                                </div>
+
+                                <!-- Warnings and Action Buttons -->
+                                <div id="v125_warning_box" style="display: none; padding: 12px; background: rgba(239, 68, 68, 0.1); border: 1px solid var(--danger); border-radius: 8px; color: var(--danger); font-size: 12px; line-height: 1.5; margin-bottom: 16px; align-items: flex-start; gap: 8px;">
+                                    <i data-lucide="alert-triangle" style="width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px;"></i>
+                                    <div id="v125_warning_text"></div>
+                                </div>
+
+                                <button class="btn-primary" onclick="calculateFP7125()" style="width: 100%;"><i data-lucide="calculator"></i> 開始計算</button>
+                            </div>
+
+                            <!-- Right: Outputs Area -->
+                            <div class="section-output">
+                                <div class="results-title" style="margin-bottom: 16px; font-size: 14px; text-transform: none; letter-spacing: normal; color: var(--warning); border-bottom: 1px solid var(--border-output-section); padding-bottom: 8px; display: flex; align-items: center; gap: 6px;"><i data-lucide="check-square" style="width:16px;"></i> 設計結果區 (Outputs)</div>
+                                
+                                <div class="results-grid" style="grid-template-columns: 1fr 1fr; gap: 12px;">
+                                    <!-- High-fidelity Inductors -->
+                                    <div class="result-item" style="background: rgba(245, 158, 11, 0.05); border: 1px solid rgba(245, 158, 11, 0.2); padding: 12px; border-radius: 8px; grid-column: span 2;">
+                                        <span class="result-label" style="color: var(--warning); font-weight: 600;">工作電感值 L (μH)</span>
+                                        <span class="result-val" id="r125_L" style="font-size: 20px; color: var(--warning); font-weight: 800;">-</span>
+                                    </div>
+                                    
+                                    <!-- Secondary details -->
+                                    <div class="result-item" style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 6px;">
+                                        <span class="result-label">工作頻率 (kHz)</span>
+                                        <span class="result-val" id="r125_freq_calc" style="font-size: 15px; font-weight: 700; color: var(--text-primary);">-</span>
+                                    </div>
+                                    <div class="result-item" style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 6px;">
+                                        <span class="result-label">最小調光占空比 (%)</span>
+                                        <span class="result-val" id="r125_minduty" style="font-size: 15px; font-weight: 700; color: var(--text-primary);">-</span>
+                                    </div>
+                                    <div class="result-item" style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 6px;">
+                                        <span class="result-label">Ton 時間 (μs)</span>
+                                        <span class="result-val" id="r125_ton" style="font-size: 15px; font-weight: 600; color: var(--text-primary);">-</span>
+                                    </div>
+                                    <div class="result-item" style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 6px;">
+                                        <span class="result-label">Toff 時間 (μs)</span>
+                                        <span class="result-val" id="r125_toff" style="font-size: 15px; font-weight: 600; color: var(--text-primary);">-</span>
+                                    </div>
+                                </div>
+
+                                <!-- Detailed Output Components List -->
+                                <div style="margin-top: 20px; padding-top: 16px; border-top: 1px dashed var(--border-output-section); font-size: 13px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; color: var(--text-secondary);">
+                                    <div><strong>Rcs 阻值 (0.25V/Iled):</strong> <span id="lbl125_rcs" style="color: var(--text-primary); font-weight:500;">-</span></div>
+                                    <div><strong>Rcs 功耗:</strong> <span id="lbl125_p_rcs" style="color: var(--text-primary); font-weight:500;">-</span></div>
+                                    <div><strong>二極體耐壓 Vd:</strong> <span id="lbl125_vd_max" style="color: var(--text-primary); font-weight:500;">-</span></div>
+                                    <div><strong>二極體電流 Id:</strong> <span id="lbl125_id_max" style="color: var(--text-primary); font-weight:500;">-</span></div>
+                                    <div><strong>MOSFET 耐壓 Vds:</strong> <span id="lbl125_vds_max" style="color: var(--text-primary); font-weight:500;">-</span></div>
+                                    <div><strong>輸出濾波電容 Cled:</strong> <span id="lbl125_cled" style="color: var(--text-primary); font-weight:500;">-</span></div>
+                                    <div><strong>電感峰值電流 Peak:</strong> <span id="lbl125_i_peak" style="color: var(--text-primary); font-weight:500;">-</span></div>
+                                    <div><strong>電感建議電流 (1.2x):</strong> <span id="lbl125_i_ind_rating" style="color: var(--text-primary); font-weight:500;">-</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FP5207 Form -->
+                    <div id="form-fp5207" class="chip-form" style="display:none;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                            <!-- Left Inputs -->
+                            <div class="section-input">
+                                <div class="results-title" style="margin-bottom: 16px; font-size: 14px; text-transform: none; letter-spacing: normal; color: var(--accent-primary); border-bottom: 1px solid var(--border-input-section); padding-bottom: 8px; display: flex; align-items: center; gap: 6px;"><i data-lucide="sliders" style="width:16px;"></i> 輸入參數區 (Inputs)</div>
+                                
+                                <div class="input-group" style="margin-bottom: 12px;">
+                                    <label>拓撲架構選擇 (Topology)</label>
+                                    <select id="v5207_topo" onchange="toggleFP5207Inputs()" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; padding: 8px; color: var(--text-primary); font-size: 13px; width: 100%;">
+                                        <option value="boost">Boost 升壓架構</option>
+                                        <option value="buckboost">SEPIC 升降壓架構</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-grid" style="grid-template-columns: 1fr 1fr; gap: 12px;">
+                                    <div class="input-group" id="v5207_vin_group">
+                                        <label>輸入電壓 Vin (V)</label>
+                                        <input type="number" id="v5207_vin" value="12" step="0.1">
+                                    </div>
+                                    <div class="input-group" id="v5207_vin_min_group" style="display:none;">
+                                        <label>最小輸入 Vin_min (V)</label>
+                                        <input type="number" id="v5207_vin_min" value="12" step="0.1">
+                                    </div>
+                                    <div class="input-group" id="v5207_vin_max_group" style="display:none;">
+                                        <label>最大輸入 Vin_max (V)</label>
+                                        <input type="number" id="v5207_vin_max" value="16.8" step="0.1">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>輸出電壓 Vout (V)</label>
+                                        <input type="number" id="v5207_vout" value="24" step="0.1">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>輸出電流 Iout (A)</label>
+                                        <input type="number" id="v5207_iout" value="2.0" step="0.1">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>工作頻率 Freq (kHz)</label>
+                                        <input type="number" id="v5207_freq" value="150" step="1">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>估算效率 Eff (%)</label>
+                                        <input type="number" id="v5207_eff" value="90" step="1">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>啟動電壓 V_start (V)</label>
+                                        <input type="number" id="v5207_vstart" value="8" step="0.1">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>二極體壓降 Vf (V)</label>
+                                        <input type="number" id="v5207_vf" value="0.5" step="0.1">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>漣波比例 Ripple (%)</label>
+                                        <input type="number" id="v5207_ripple_pct" value="30" step="1">
+                                    </div>
+                                </div>
+                                <button class="btn-primary" onclick="calculateFP5207()" style="margin-top: 16px; width: 100%;"><i data-lucide="calculator"></i> 開始計算</button>
+                            </div>
+
+                            <!-- Right Outputs -->
+                            <div class="section-output">
+                                <div class="results-title" style="margin-bottom: 16px; font-size: 14px; text-transform: none; letter-spacing: normal; color: var(--warning); border-bottom: 1px solid var(--border-output-section); padding-bottom: 8px; display: flex; align-items: center; gap: 6px;"><i data-lucide="check-square" style="width:16px;"></i> 設計結果區 (Outputs)</div>
+                                
+                                <div class="results-grid" style="grid-template-columns: 1fr 1fr; gap: 12px;">
+                                    <div class="result-item" style="background: rgba(245, 158, 11, 0.05); border: 1px solid rgba(245, 158, 11, 0.2); padding: 12px; border-radius: 8px; grid-column: span 2;">
+                                        <span class="result-label" style="color: var(--warning); font-weight: 600;" id="lbl5207_L_title">設計電感值 L (μH)</span>
+                                        <span class="result-val" id="r5207_L" style="font-size: 20px; color: var(--warning); font-weight: 800;">-</span>
+                                    </div>
+                                    
+                                    <div class="result-item" style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 6px;">
+                                        <span class="result-label" id="lbl5207_ipeak_title">電感峰值電流 (A)</span>
+                                        <span class="result-val" id="r5207_ipeak" style="font-size: 15px; font-weight: 700; color: var(--text-primary);">-</span>
+                                    </div>
+                                    <div class="result-item" style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 6px;">
+                                        <span class="result-label">占空比 Duty (%)</span>
+                                        <span class="result-val" id="r5207_duty" style="font-size: 15px; font-weight: 700; color: var(--text-primary);">-</span>
+                                    </div>
+                                    <div class="result-item" style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 6px;">
+                                        <span class="result-label">分壓電阻 R_fb1 (kΩ)</span>
+                                        <span class="result-val" id="r5207_rfb1" style="font-size: 15px; font-weight: 600; color: var(--text-primary);">-</span>
+                                    </div>
+                                    <div class="result-item" style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 6px;">
+                                        <span class="result-label">分壓電阻 R_fb2 (kΩ)</span>
+                                        <span class="result-val" id="r5207_rfb2" style="font-size: 15px; font-weight: 600; color: var(--text-primary);">10.0</span>
+                                    </div>
+                                </div>
+
+                                <div style="margin-top: 20px; padding-top: 16px; border-top: 1px dashed var(--border-output-section); font-size: 13px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; color: var(--text-secondary);">
+                                    <div><strong>檢流阻值 Rcs:</strong> <span id="lbl5207_rcs" style="color: var(--text-primary); font-weight:500;">-</span></div>
+                                    <div><strong>檢流電阻功率 P_rcs:</strong> <span id="lbl5207_prcs" style="color: var(--text-primary); font-weight:500;">-</span></div>
+                                    <div><strong>頻率編程電阻 RT:</strong> <span id="lbl5207_r_rt" style="color: var(--text-primary); font-weight:500;">-</span></div>
+                                    <div><strong>啟動分壓電阻 R_uvp1:</strong> <span id="lbl5207_r_uvp1" style="color: var(--text-primary); font-weight:500;">-</span></div>
+                                    <div><strong>開關元件耐壓需求:</strong> <span id="lbl5207_mos_v" style="color: var(--text-primary); font-weight:500;">-</span></div>
+                                    <div><strong>開關元件電流需求:</strong> <span id="lbl5207_mos_i" style="color: var(--text-primary); font-weight:500;">-</span></div>
+                                    <div id="v5207_c15_item" style="grid-column: span 2; display:none;"><strong>輸入濾波電容 C15 (min):</strong> <span id="lbl5207_c15" style="color: var(--text-primary); font-weight:500;">-</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FP7195 Form -->
+                    <div id="form-fp7195" class="chip-form" style="display:none;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                            <!-- Left Inputs -->
+                            <div class="section-input">
+                                <div class="results-title" style="margin-bottom: 16px; font-size: 14px; text-transform: none; letter-spacing: normal; color: var(--accent-primary); border-bottom: 1px solid var(--border-input-section); padding-bottom: 8px; display: flex; align-items: center; gap: 6px;"><i data-lucide="sliders" style="width:16px;"></i> 輸入參數區 (Inputs)</div>
+                                <div class="form-grid" style="grid-template-columns: 1fr 1fr; gap: 12px;">
+                                    <div class="input-group">
+                                        <label>輸入電壓 Vin (V)</label>
+                                        <input type="number" id="v7195_vin" value="48" step="0.1">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>LED 電壓 Vled (V)</label>
+                                        <input type="number" id="v7195_vled" value="36" step="0.1">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>LED 電流 Iled (A)</label>
+                                        <input type="number" id="v7195_iled" value="1.5" step="0.1">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>電感 Ripple 漣波比 (%)</label>
+                                        <input type="number" id="v7195_ripple_pct" value="30" step="1">
+                                    </div>
+                                    <div class="input-group" style="grid-column: span 2;">
+                                        <label>最大濾波電容漣波電壓 Vripple (V)</label>
+                                        <input type="number" id="v7195_vripple" value="0.2" step="0.01">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>DIM 調光輸入模式</label>
+                                        <select id="v7195_dim_type" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; padding: 8px; color: var(--text-primary); font-size: 13px; width: 100%;">
+                                            <option value="vol">DIM 電壓 (0.1V - 2.5V)</option>
+                                            <option value="pwm">PWM 佔空比 (0% - 100%)</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-group">
+                                        <label>DIM 輸入數值</label>
+                                        <input type="number" id="v7195_dim_val" value="1.25" step="0.01">
+                                    </div>
+                                </div>
+                                <button class="btn-primary" onclick="calculateFP7195()" style="margin-top: 16px; width: 100%;"><i data-lucide="calculator"></i> 開始計算</button>
+                                
+                                <!-- Layout Guidelines Panel -->
+                                <div style="margin-top: 16px; padding: 12px; background: rgba(59,130,246,0.05); border: 1px solid rgba(59,130,246,0.15); border-radius: 8px;">
+                                    <div style="font-size: 13px; font-weight: 600; color: var(--accent-primary); margin-bottom: 8px; display: flex; align-items: center; gap: 6px;"><i data-lucide="info" style="width: 14px;"></i> PCB 佈線設計指南 (Layout Guide)</div>
+                                    <ul style="margin: 0; padding-left: 18px; font-size: 12px; color: var(--text-secondary); line-height: 1.6; display: flex; flex-direction: column; gap: 4px;">
+                                        <li><strong>回授線路隔離：</strong> Rcs 差分回授信號線路須遠離開關節點(LX)與電感。</li>
+                                        <li><strong>地線單點接地：</strong> 訊號地(SGND)與功率地(PGND)需於晶片地端進行單點接地，以減小高頻雜訊干擾。</li>
+                                        <li><strong>縮短功率迴路：</strong> 輸入電容、電感、二極體組成的高頻大電流環路應儘可能縮短並拓寬。</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Right Outputs -->
+                            <div class="section-output">
+                                <div class="results-title" style="margin-bottom: 16px; font-size: 14px; text-transform: none; letter-spacing: normal; color: var(--warning); border-bottom: 1px solid var(--border-output-section); padding-bottom: 8px; display: flex; align-items: center; gap: 6px;"><i data-lucide="check-square" style="width:16px;"></i> 設計結果區 (Outputs)</div>
+                                
+                                <div class="results-grid" style="grid-template-columns: 1fr 1fr; gap: 12px;">
+                                    <div class="result-item" style="background: rgba(245, 158, 11, 0.05); border: 1px solid rgba(245, 158, 11, 0.2); padding: 12px; border-radius: 8px; grid-column: span 2;">
+                                        <span class="result-label" style="color: var(--warning); font-weight: 600;">工作電感值 L (μH)</span>
+                                        <span class="result-val" id="r7195_L" style="font-size: 20px; color: var(--warning); font-weight: 800;">-</span>
+                                    </div>
+                                    <div class="result-item" style="background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.2); padding: 12px; border-radius: 8px; grid-column: span 2;">
+                                        <span class="result-label" style="color: var(--success); font-weight: 600;">最小輸出濾波電容 Cout (μF)</span>
+                                        <span class="result-val" id="r7195_cout" style="font-size: 20px; color: var(--success); font-weight: 800;">-</span>
+                                    </div>
+                                    
+                                    <div class="result-item" style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 6px;">
+                                        <span class="result-label">最大容許 ESR (mΩ)</span>
+                                        <span class="result-val" id="r7195_esr" style="font-size: 15px; font-weight: 700; color: var(--text-primary);">-</span>
+                                    </div>
+                                    <div class="result-item" style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 6px;">
+                                        <span class="result-label">占空比 Duty (%)</span>
+                                        <span class="result-val" id="r7195_duty" style="font-size: 15px; font-weight: 700; color: var(--text-primary);">-</span>
+                                    </div>
+                                    <div class="result-item" style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 6px;">
+                                        <span class="result-label">電感峰值電流 (A)</span>
+                                        <span class="result-val" id="r7195_ipeak" style="font-size: 15px; font-weight: 600; color: var(--text-primary);">-</span>
+                                    </div>
+                                    <div class="result-item" style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 6px;">
+                                        <span class="result-label">電流紋波比例 (%)</span>
+                                        <span class="result-val" id="r7195_ripple_actual" style="font-size: 15px; font-weight: 600; color: var(--text-primary);">-</span>
+                                    </div>
+                                    <div class="result-item" style="background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.2); padding: 10px; border-radius: 6px;">
+                                        <span class="result-label" style="color: var(--success); font-weight: 600;">調光後 LED 電流 (A)</span>
+                                        <span class="result-val" id="r7195_iled_dim" style="font-size: 15px; font-weight: 700; color: var(--success);">-</span>
+                                    </div>
+                                    <div class="result-item" style="background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.2); padding: 10px; border-radius: 6px;">
+                                        <span class="result-label" style="color: var(--success); font-weight: 600;">調光後電流比例 (%)</span>
+                                        <span class="result-val" id="r7195_iled_dim_ratio" style="font-size: 15px; font-weight: 700; color: var(--success);">-</span>
+                                    </div>
+                                </div>
+
+                                <div style="margin-top: 20px; padding-top: 16px; border-top: 1px dashed var(--border-output-section); font-size: 13px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; color: var(--text-secondary);">
+                                    <div><strong>Rcs 檢流阻值 (0.1V):</strong> <span id="lbl7195_rcs" style="color: var(--text-primary); font-weight:500;">-</span></div>
+                                    <div><strong>Rcs 檢流功率:</strong> <span id="lbl7195_prcs" style="color: var(--text-primary); font-weight:500;">-</span></div>
+                                    <div><strong>過流 OCP 阻值 Roc:</strong> <span id="lbl7195_roc" style="color: var(--text-primary); font-weight:500;">-</span></div>
+                                    <div><strong>OCP 電阻功率 P_roc:</strong> <span id="lbl7195_proc" style="color: var(--text-primary); font-weight:500;">-</span></div>
+                                    <div><strong>開關元件/二極體耐壓:</strong> <span id="lbl7195_vd_max" style="color: var(--text-primary); font-weight:500;">-</span></div>
+                                    <div><strong>固定開關頻率:</strong> <span style="color: var(--text-primary); font-weight:500;">175 kHz</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FP7130 Form -->
+                    <div id="form-fp7130" class="chip-form" style="display:none;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                            <!-- Left Inputs -->
+                            <div class="section-input">
+                                <div class="results-title" style="margin-bottom: 16px; font-size: 14px; text-transform: none; letter-spacing: normal; color: var(--accent-primary); border-bottom: 1px solid var(--border-input-section); padding-bottom: 8px; display: flex; align-items: center; gap: 6px;"><i data-lucide="sliders" style="width:16px;"></i> 輸入參數區 (Inputs)</div>
+                                <div class="form-grid" style="grid-template-columns: 1fr 1fr; gap: 12px;">
+                                    <div class="input-group">
+                                        <label>輸入電壓 Vin (V)</label>
+                                        <input type="number" id="v7130_vin" value="48" step="0.1">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>LED 電壓 Vled (V)</label>
+                                        <input type="number" id="v7130_vled" value="36" step="0.1">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>LED 電流 Iled (A)</label>
+                                        <input type="number" id="v7130_iled" value="2.4" step="0.1">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>工作頻率 Freq (kHz)</label>
+                                        <input type="number" id="v7130_freq" value="167" step="1">
+                                    </div>
+                                </div>
+                                <button class="btn-primary" onclick="calculateFP7130()" style="margin-top: 16px; width: 100%;"><i data-lucide="calculator"></i> 開始計算</button>
+                            </div>
+
+                            <!-- Right Outputs -->
+                            <div class="section-output">
+                                <div class="results-title" style="margin-bottom: 16px; font-size: 14px; text-transform: none; letter-spacing: normal; color: var(--warning); border-bottom: 1px solid var(--border-output-section); padding-bottom: 8px; display: flex; align-items: center; gap: 6px;"><i data-lucide="check-square" style="width:16px;"></i> 設計結果區 (Outputs)</div>
+                                
+                                <div class="results-grid" style="grid-template-columns: 1fr 1fr; gap: 12px;">
+                                    <div class="result-item" style="background: rgba(245, 158, 11, 0.05); border: 1px solid rgba(245, 158, 11, 0.2); padding: 12px; border-radius: 8px; grid-column: span 2;">
+                                        <span class="result-label" style="color: var(--warning); font-weight: 600;">設計電感值 L (μH)</span>
+                                        <span class="result-val" id="r7130_L" style="font-size: 20px; color: var(--warning); font-weight: 800;">-</span>
+                                    </div>
+                                    
+                                    <div class="result-item" style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 6px;">
+                                        <span class="result-label">占空比 Duty (%)</span>
+                                        <span class="result-val" id="r7130_duty" style="font-size: 15px; font-weight: 700; color: var(--text-primary);">-</span>
+                                    </div>
+                                    <div class="result-item" style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 6px;">
+                                        <span class="result-label">檢流阻值 Rcs (Ω)</span>
+                                        <span class="result-val" id="r7130_rcs" style="font-size: 15px; font-weight: 700; color: var(--text-primary);">-</span>
+                                    </div>
+                                    <div class="result-item" style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 6px;">
+                                        <span class="result-label">Ton 時間 (μs)</span>
+                                        <span class="result-val" id="r7130_ton" style="font-size: 15px; font-weight: 600; color: var(--text-primary);">-</span>
+                                    </div>
+                                    <div class="result-item" style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 6px;">
+                                        <span class="result-label">Toff 時間 (μs)</span>
+                                        <span class="result-val" id="r7130_toff" style="font-size: 15px; font-weight: 600; color: var(--text-primary);">-</span>
+                                    </div>
+                                </div>
+
+                                <div style="margin-top: 20px; padding-top: 16px; border-top: 1px dashed var(--border-output-section); font-size: 13px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; color: var(--text-secondary);">
+                                    <div><strong>Rcs 檢流功率 P_rcs:</strong> <span id="lbl7130_prcs" style="color: var(--text-primary); font-weight:500;">-</span></div>
+                                    <div><strong>開關峰值電流 I_peak:</strong> <span id="lbl7130_ipeak" style="color: var(--text-primary); font-weight:500;">-</span></div>
+                                    <div><strong>開關元件耐壓需求:</strong> <span id="lbl7130_mos_v" style="color: var(--text-primary); font-weight:500;">-</span></div>
+                                    <div><strong>二極體耐壓需求:</strong> <span id="lbl7130_diode_v" style="color: var(--text-primary); font-weight:500;">-</span></div>
+                                    <div><strong>開關與二極體額定電流:</strong> <span id="lbl7130_mos_i" style="color: var(--text-primary); font-weight:500;">-</span></div>
+                                    <div><strong>內部開關阻抗 Ron:</strong> <span style="color: var(--text-primary); font-weight:500;">0.15 Ω</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: 📈 調光特性與暫態波形模擬器 -->
+                <div class="card" id="dimming-simulation-card" style="width: 100%;">
+                    <div class="card-header" style="border-bottom: 1px solid var(--border-card); padding-bottom: 16px; margin-bottom: 20px;">
+                        <h2 style="margin: 0; font-size: 18px; display: flex; align-items: center; gap: 8px;"><i data-lucide="line-chart" style="color: var(--accent-primary);"></i> 調光特性與暫態波形模擬器</h2>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 24px; align-items: start;">
+                        <!-- Left: Simulation Parameters & Outputs -->
+                        <div class="section-input">
+                            <div class="results-title" style="margin-bottom: 16px; font-size: 14px; text-transform: none; letter-spacing: normal; color: var(--accent-primary); border-bottom: 1px solid var(--border-input-section); padding-bottom: 8px; display: flex; align-items: center; gap: 6px;"><i data-lucide="settings" style="width:16px;"></i> 模擬參數設定</div>
+                            <div class="form-grid" style="grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;">
+                                <div class="input-group">
+                                    <label>輸入電壓 Vin (V)</label>
+                                    <input type="number" id="v126_vin" value="48" step="0.1">
+                                </div>
+                                <div class="input-group">
+                                    <label>LED 電壓 Vled (V)</label>
+                                    <input type="number" id="v126_vled" value="32" step="0.1">
+                                </div>
+                                <div class="input-group">
+                                    <label>輸出電流 Iled (A)</label>
+                                    <input type="number" id="v126_iled" value="1.2" step="0.1">
+                                </div>
+                                <div class="input-group">
+                                    <label>輸入電感 L (μH)</label>
+                                    <input type="number" id="v126_l_val" value="68" step="1">
+                                </div>
+                                <div class="input-group">
+                                    <label>調光頻率 Dim Freq (Hz)</label>
+                                    <input type="number" id="v126_dim_freq" value="16000">
+                                </div>
+                                <div class="input-group">
+                                    <label>模擬階數 Steps</label>
+                                    <input type="number" id="v126_dim_steps" value="100">
+                                </div>
+                                <div class="input-group">
+                                    <label>Ton_min 限制 (ns)</label>
+                                    <input type="number" id="v126_ton_min" value="490">
+                                </div>
+                                <div class="input-group">
+                                    <label>Toff_min 限制 (ns)</label>
+                                    <input type="number" id="v126_toff_min" value="490">
+                                </div>
+                            </div>
+
+                            <div id="fp7126_warning_box" style="margin-bottom: 16px; padding: 12px; border-radius: 8px; font-size: 13px; font-weight: 500; display: none;"></div>
+
+                            <button class="btn-primary" onclick="calculateFP7126()" style="width: 100%; margin-bottom: 16px;"><i data-lucide="activity"></i> 開始時域模擬</button>
+
+                            <div class="results-box" style="margin-top: 12px; padding: 16px;">
+                                <div class="results-title" style="font-size: 13px; text-transform: none; color: var(--text-primary); border-bottom: 1px solid var(--border-card); padding-bottom: 8px; margin-bottom: 12px;">模擬器收斂結果 (雙向收斂)</div>
+                                <div class="results-grid" style="grid-template-columns: 1fr 1fr; gap: 12px;">
+                                    <div class="result-item" style="padding: 10px; background: rgba(255,255,255,0.01); border-radius: 6px;">
+                                        <span class="result-label" style="font-size: 11px;">頻率 Freq</span>
+                                        <span class="result-val" id="r126_freq" style="font-size: 15px; color: var(--text-primary); font-weight: 700;">-</span>
+                                    </div>
+                                    <div class="result-item" style="padding: 10px; background: rgba(255,255,255,0.01); border-radius: 6px;">
+                                        <span class="result-label" style="font-size: 11px;">漣波比 Ripple</span>
+                                        <span class="result-val" id="r126_ripple_val" style="font-size: 15px; color: var(--text-primary); font-weight: 700;">-</span>
+                                    </div>
+                                    <div class="result-item" style="padding: 10px; background: rgba(255,255,255,0.01); border-radius: 6px;">
+                                        <span class="result-label" style="font-size: 11px;">Ton 時間</span>
+                                        <span class="result-val" id="r126_ton" style="font-size: 15px; color: var(--text-primary); font-weight: 700;">-</span>
+                                    </div>
+                                    <div class="result-item" style="padding: 10px; background: rgba(255,255,255,0.01); border-radius: 6px;">
+                                        <span class="result-label" style="font-size: 11px;">Toff 時間</span>
+                                        <span class="result-val" id="r126_toff" style="font-size: 15px; color: var(--text-primary); font-weight: 700;">-</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right: Chart Plot & Oscilloscope Area -->
+                        <div style="display: flex; flex-direction: column; gap: 16px; width: 100%;">
+                            <!-- Top: Dimming Chart -->
+                            <div class="chart-container" style="background: rgba(0,0,0,0.15); border: 1px solid var(--border-card); border-radius: 12px; padding: 12px; height: 260px;">
+                                <canvas id="dimmingChart" class="canvas-plotter" style="width: 100%; height: 100%;"></canvas>
+                            </div>
+                            
+                            <!-- Bottom: Oscilloscope -->
+                            <div class="results-box" style="margin-top: 0; padding: 16px; background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 12px;">
+                                <div class="results-title" style="font-size: 12px; text-transform: none; color: var(--accent-primary); border-bottom: 1px solid var(--border-card); padding-bottom: 8px; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between;">
+                                    <span style="display: flex; align-items: center; gap: 6px;"><i data-lucide="activity" style="width:14px; height:14px;"></i> 模擬示波器 (DIM/GATE)</span>
+                                    <span style="font-size: 10px; color: var(--text-secondary); font-weight: normal;" id="scope-status-label">占空比自動輪播中</span>
+                                </div>
+                                <div style="background: #020617; border: 1px solid var(--border-card); border-radius: 8px; padding: 8px; height: 140px; position: relative;">
+                                    <canvas id="oscilloscopeChart" style="width: 100%; height: 100%; display: block;"></canvas>
+                                </div>
+                                
+                                <!-- Play, Pause & Slider Controls -->
+                                <div style="display: flex; align-items: center; gap: 16px; margin-top: 14px; flex-wrap: wrap;">
+                                    <!-- Play/Pause Buttons -->
+                                    <div style="display: flex; gap: 6px;">
+                                        <button id="btn-scope-play" class="btn-primary" style="padding: 6px 12px; font-size: 11px; display: flex; align-items: center; gap: 4px; height: 28px; line-height: 1;" onclick="playScopeAnimation()"><i data-lucide="play" style="width:12px; height:12px;"></i> 播放</button>
+                                        <button id="btn-scope-pause" class="btn-secondary" style="padding: 6px 12px; font-size: 11px; display: flex; align-items: center; gap: 4px; height: 28px; line-height: 1;" onclick="pauseScopeAnimation()"><i data-lucide="pause" style="width:12px; height:12px;"></i> 暫停</button>
+                                    </div>
+                                    
+                                    <!-- Slider Label -->
+                                    <div style="font-size: 12px; color: var(--text-primary); min-width: 95px;">
+                                        DIM 佔空比: <span id="lbl-scope-duty" style="font-weight: 700; color: var(--warning);">0%</span>
+                                    </div>
+                                    
+                                    <!-- Slider Input -->
+                                    <input type="range" id="slider-scope-duty" min="0" max="100" value="0" style="flex: 1; min-width: 120px; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; outline: none; cursor: pointer; accent-color: var(--accent-primary);" oninput="onScopeSliderInput(this.value)">
+                                </div>
+                            </div>
+                            
+                            <p style="font-size: 11px; color: var(--text-secondary); line-height: 1.4; margin: 0;">
+                                * 此時域模擬重現了原 VB6 中的時域微積分模擬，顯示調光占空比對應實際輸出電流比的暫態曲線（理想值為綠色虛線，實際模擬為藍色實線）。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 3: GENERAL EE TOOLBOX -->
+        <section id="ee-toolbox" class="page-section">
+            <div class="content-grid">
+                <!-- Resistor Matching -->
                 <div class="card">
                     <div class="card-header">
-                        <span class="client-badge yaxin">雅欣</span>
-                        <span class="client-title">訪問對象：張總 / 李工 (06/23) &mdash; 討論客訴問題與產品規劃方向</span>
+                        <h2>🎯 精密並聯 Rcs 與回授阻值搜尋器</h2>
                     </div>
                     
-                    <div>
-                        <div class="block-neutral">
-                            <div class="block-title">※客訴問題</div>
-                            <p class="block-text">其索賠相關議題雅欣會盡量先吸收掉，如有處理不掉的項目才會考慮跟類比科洽談。</p>
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label>目標等效阻值 Rcs_target (Ω)</label>
+                            <input type="number" id="res_target" value="0.05" step="0.001">
                         </div>
-                        <div class="section-divider">※產品規劃</div>
+                        <div class="input-group">
+                            <label>最大可接受誤差值 (%)</label>
+                            <input type="number" id="res_err_limit" value="1.0" step="0.1">
+                        </div>
+                        <div class="input-group">
+                            <label>阻值系列</label>
+                            <select id="res_series">
+                                <option value="e96">E96 精密系列 (1% 精度)</option>
+                                <option value="e24">E24 常用系列 (5% 精度)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="btn-primary" onclick="searchResistors()"><i data-lucide="search"></i> 搜尋最佳標稱組合</button>
+                    
+                    <div class="results-box" style="max-height: 250px; overflow-y: auto;">
+                        <div class="results-title">前 10 組電阻組合匹配結果</div>
+                        <table class="results-table" id="res_results_table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>R1 (Ω)</th>
+                                    <th>R2 (Ω)</th>
+                                    <th>R3 (Ω)</th>
+                                    <th>實際等效值 (Ω)</th>
+                                    <th>實際誤差 (%)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="6" style="text-align: center; color: var(--text-muted);">尚未進行搜尋，請點擊按鈕開始。</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Inductor and MOSFET -->
+                <div class="single-col">
+                    <!-- Inductor Coil -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>🧵 電感線圈繞線匝數計算</h2>
+                        </div>
+                        <div class="form-grid">
+                            <div class="input-group">
+                                <label>目標電感量 L (μH)</label>
+                                <input type="number" id="ind_L" value="22">
+                            </div>
+                            <div class="input-group">
+                                <label>磁芯導磁率 Al 值 (nH/T²)</label>
+                                <input type="number" id="ind_Al" value="120">
+                            </div>
+                        </div>
+                        <button class="btn-primary" onclick="calculateInductor()"><i data-lucide="refresh-cw"></i> 試算匝數</button>
+                        
+                        <div class="results-box">
+                            <div class="results-grid">
+                                <div class="result-item">
+                                    <span class="result-label">所需繞線圈數 N (T)</span>
+                                    <span class="result-val" id="r_ind_turns">-</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="product-grid">
-                        <div class="product-item">
-                            <span class="product-number">01</span>
-                            <p class="product-text">雅欣建議FP5207轉TSMC製程生產， 功能與市場狀況較為穩定比較有信心。</p>
+                    <!-- MOSFET Thermal Loss -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>🔥 MOSFET 功率損耗分析器</h2>
                         </div>
-                        <div class="product-item">
-                            <span class="product-number">02</span>
-                            <p class="product-text">FP6295市場驗證較少，且明確無法提供OC數值上下限相關問題，客戶仍採觀望態度不敢大量生產使用。</p>
+                        <div class="form-grid">
+                            <div class="input-group">
+                                <label>工作電流 I (A)</label>
+                                <input type="number" id="mos_I" value="3" step="0.1">
+                            </div>
+                            <div class="input-group">
+                                <label>導通阻抗 Rds_on (mΩ)</label>
+                                <input type="number" id="mos_rdson" value="45">
+                            </div>
                         </div>
-                        <div class="product-item">
-                            <span class="product-number">03</span>
-                            <p class="product-text">FP6296仍持續有燒HVDD相關客訴，目前應用領域大多負載為電機馬達，尤其理髮機有較多反電動勢，這種應用容易造成輸出有突波電壓，不良客訴就會比較多，雅欣表示耐壓餘量不足的關係，所以在這方面領域產品難以展開。</p>
-                        </div>
-                        <div class="product-item">
-                            <span class="product-number">04</span>
-                            <p class="product-text">FTC2107系列產品，如果轉TSMC則應把這次客訴CS功能失效問題找出來解決，否則等批量生產仍是個隱憂，還有關於IDD limit整批次偏低問題也要解決。不過轉TSMC後仍會定義為基礎型產品，對於新市場不一定能接上，價格成本會比較敏感。</p>
-                        </div>
-                        <div class="product-item">
-                            <span class="product-number">05</span>
-                            <p class="product-text">新產品對於同步升壓TPS61088(12.6V)/TPS61178(20V)市場需求比較明確，也是目前升壓產品一直有欠缺的部分。</p>
-                        </div>
-                        <div class="product-item">
-                            <span class="product-number">06</span>
-                            <p class="product-text">雅欣表示希望FP7195能有後繼產品接上，目前市場對於這類型產品需求仍在，相關調光功能大陸競爭對手也陸續推出同類型產品，可參考智芯(Hichips)的HI7000(降壓)與HI6000A(升壓)，調光效果跟FP7195差不多條件下售價成本低很多，逐漸成為市場主流規格。</p>
-                        </div>
-                        <div class="product-item">
-                            <span class="product-number">07</span>
-                            <p class="product-text">FP7135近期客戶正在畫板驗證，不過功能性受限關係，市場定位仍是取代FP7125為主，目前產品仍無法滿足客戶新機種的功能性要求，在2025/1月已正式提案 pin to pin OB3379的案子(目前是FTCM9036106)希望可以盡快投入獨立量產階段，否則不管是競爭對手因素或市場需求變遷，LED相關市場會逐漸錯失份額甚至退出市場。</p>
-                        </div>
-                        <div class="product-item">
-                            <span class="product-number">08</span>
-                            <p class="product-text">FP7102/FP7103停產的關係，在完全退出客戶市場前希望能有產品規劃接上，雅欣預估目前這市場還有擴張的可能性，完全沒有產品去維持推廣很可惜。目前已規劃的36V 3A Sync-Buck LED Driver可以完全替代，建議要有相關時間表出來，給代理商可以去維持市場關係。</p>
-                        </div>
-                        <div class="product-item">
-                            <span class="product-number">09</span>
-                            <p class="product-text">FP7208目前主流應用在輸出多路調光調色產品，受限於調光百分比不夠低，仍有不少客戶機種無法採用，因此提出後續產品希望能有相關規劃。</p>
-                        </div>
-                        <div class="product-item">
-                            <span class="product-number">10</span>
-                            <p class="product-text">PD相關產品雅欣客戶目前接觸較少，尚無法提供明確的產品規劃方面的建議。</p>
+                        <button class="btn-primary" onclick="calculateMOSLoss()"><i data-lucide="bar-chart-2"></i> 分析損耗</button>
+                        
+                        <div class="results-box">
+                            <div class="results-grid">
+                                <div class="result-item">
+                                    <span class="result-label">導通損耗 P_cond (W)</span>
+                                    <span class="result-val" id="r_mos_loss">-</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- PAGE 4: AUTOMATION AND STATISTICS -->
+        <section id="automation" class="page-section">
+            <div class="content-grid">
+                <!-- AE Data Link Automation -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>🔗 AE Data Link 報表整合系統 (模擬操作)</h2>
+                    </div>
+                    <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 20px;">
+                        原 VB 專案利用 `Microsoft Excel Object Library` 及 Shell 指令，掃描量測儀器產生的多重資料夾，並將資料填寫至 Excel 中。此處提供模擬量測儀器匯入功能。
+                    </p>
+                    
+                    <div class="drag-area" id="aeDragArea">
+                        <div class="drag-icon"><i data-lucide="upload-cloud"></i></div>
+                        <div class="drag-text" id="aeDragText">點擊此處模擬「一鍵掃描儀器資料夾」並匯入</div>
+                    </div>
+
+                    <div class="results-box" id="aeResultsBox" style="display:none;">
+                        <div class="results-title">自動化報表匯入日誌</div>
+                        <ul id="aeLogList" style="font-size: 12px; font-family: monospace; color: var(--success); list-style: none; display: flex; flex-direction: column; gap: 4px;">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- CP Yield & VDD vs IDD plots -->
+                <div class="single-col">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>📊 CP Yield / 數據特性自動作圖器</h2>
+                            <div style="display: flex; gap: 8px;">
+                                <button class="btn-primary" style="padding: 6px 12px; font-size: 12px;" onclick="plotCPDistribution()">CP良率統計</button>
+                                <button class="btn-primary" style="padding: 6px 12px; font-size: 12px; background: var(--accent-gradient);" onclick="plotVDDvsIDD()">VDD vs IDD曲線</button>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="autoDataChart" class="canvas-plotter" style="height: 250px;"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 5: CATALOGS & DB -->
+        <section id="catalog-db" class="page-section">
+            <div class="content-grid">
+                <!-- Search matching FTC ↔ FP -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>🔍 FTC 專案與 FP 產品型號雙向搜尋庫</h2>
+                    </div>
+                    <div class="search-wrapper">
+                        <i data-lucide="search" class="search-icon"></i>
+                        <input type="text" id="dbSearchInput" placeholder="輸入 FTC 代號或 FP 晶片型號（例如: FTC2001, FP5001, FP7126）..." class="search-input">
+                    </div>
+                    
+                    <table class="results-table" id="dbResultsTable">
+                        <thead>
+                            <tr>
+                                <th>專案代號 (FTC)</th>
+                                <th>產品型號 (FP)</th>
+                                <th>晶片分類</th>
+                                <th>版本資訊</th>
+                                <th>備註備忘</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Filled dynamically by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Simple inventory dashboard for Demo Board -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>📋 AE 實驗室 Demo Board 庫存追蹤板</h2>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 12px;">
+                        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-card); padding-bottom: 8px;">
+                            <span style="font-size:13px; color: var(--text-secondary);">FP7126 Demo Board</span>
+                            <span style="font-size:13px; font-weight: 700; color: var(--success);">在庫 (15 片)</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-card); padding-bottom: 8px;">
+                            <span style="font-size:13px; color: var(--text-secondary);">FP5207 Demo Board</span>
+                            <span style="font-size:13px; font-weight: 700; color: var(--success);">在庫 (8 片)</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-card); padding-bottom: 8px;">
+                            <span style="font-size:13px; color: var(--text-secondary);">FP7195 Demo Board</span>
+                            <span style="font-size:13px; font-weight: 700; color: var(--warning);">借出中 (3 片 / 工程師 A)</span>
+                        </div>
+                    </div>
+                    <p style="font-size: 11px; color: var(--text-muted); margin-top: 16px;">
+                        *此處資料庫對照了 `demo board數量.xls` 等 Excel 資料庫內容。
+                    </p>
+                </div>
+            </div>
+
+            <!-- Card Selector Catalog -->
+            <div style="margin-top: 24px;">
+                <h3 style="margin-bottom: 16px; font-family: var(--font-heading); font-size: 18px;">📦 LED / DC-DC / 充電系列產品規格選型目錄</h3>
+                <div class="catalog-grid" id="productCatalogGrid">
+                    <!-- Loaded dynamically -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Waiting Modal Overlay -->
+    <div id="simulation-waiting-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(4px); z-index: 9999; align-items: center; justify-content: center;">
+        <div style="background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 12px; padding: 32px; width: 320px; text-align: center; box-shadow: var(--shadow-main); display: flex; flex-direction: column; align-items: center; gap: 16px;">
+            <div style="color: var(--accent-primary);"><i data-lucide="loader-2" class="spin-icon" style="width: 48px; height: 48px;"></i></div>
+            <div style="font-size: 16px; font-weight: 600; color: var(--text-primary);">調光曲線暫態模擬中</div>
+            <div style="font-size: 12px; color: var(--text-secondary);">正在執行 1ns 步進微積分物理收斂...</div>
+            <div style="width: 100%; background: rgba(255,255,255,0.05); height: 8px; border-radius: 4px; overflow: hidden; margin-top: 8px;">
+                <div id="simulation-progress-bar" style="background: var(--accent-primary); width: 0%; height: 100%; transition: width 0.1s linear;"></div>
+            </div>
+            <div id="simulation-progress-text" style="font-size: 13px; font-weight: 600; color: var(--warning);">0%</div>
+        </div>
+    </div>
+
+    <!-- Chip Selection Transition Overlay -->
+    <div id="chip-transition-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #0b0f19; z-index: 10001; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.25s ease;">
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 24px; text-align: center;">
+            <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--accent-primary) 0%, #1d4ed8 100%); border-radius: 20px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 30px rgba(59,130,246,0.4); position: relative; animation: pulse 1.5s infinite;">
+                <i data-lucide="cpu" style="width: 42px; height: 42px; color: white;"></i>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+                <div style="font-size: 11px; font-weight: 600; color: var(--accent-primary); letter-spacing: 2px; text-transform: uppercase;">正在切換設計模組</div>
+                <div id="transition-project-name" style="font-family: var(--font-heading); font-size: 22px; font-weight: 700; color: #f3f4f6;">-</div>
             </div>
         </div>
     </div>
+
+    <script src="app.js"></script>
 </body>
 </html>
